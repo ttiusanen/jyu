@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Posted issues</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Issues</h1>
+    <p th:text="'id: ' + ${issue.id}" />
+    <p th:text="'content: ' + ${issue.description}" />
+    <a href="/newIssue">Submit another issue</a>
+</body>
+</html>
