@@ -1,4 +1,4 @@
-package fi.jyu.issuetracker.models;
+package fi.jyu.issuetracker.dao.models;
 
 public class User {
 	private final String username;

@@ -33,3 +33,6 @@ build/
 .mvn
 .settings
 
+### DB files ###
+issuesdb*
+
