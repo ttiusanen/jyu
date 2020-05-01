@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.xml.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
+
 @Entity
 @Table(name = "Issue")
 public class Issue implements Serializable {
@@ -37,6 +39,11 @@ public class Issue implements Serializable {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	@Override
+	public String toString() {
+		return id + ", " + description;
+		
 	}
 	
 }
