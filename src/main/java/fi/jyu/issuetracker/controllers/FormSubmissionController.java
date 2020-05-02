@@ -27,13 +27,15 @@ public class FormSubmissionController {
 	
 	@PostMapping("/api/issues")
 	@CrossOrigin(origins = "http://localhost:3000")
-	public String issueSubmit(@RequestBody Issue issue) {
+	@ResponseBody
+	public Issue issueSubmit(@RequestBody Issue issue) {
 		issueRepository.save(issue);
-	    return "Posted issue: \n" + issue;
+	    return issue;
 	}
 	
 	@GetMapping("/api/issues")
 	@CrossOrigin(origins = "http://localhost:3000")
+	@ResponseBody
 	public List<Issue> issues() {
 	    return issueRepository.findAll();
 	}
