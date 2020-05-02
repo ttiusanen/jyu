@@ -30,6 +30,9 @@ public class Issue implements Serializable {
 	
     @Enumerated(EnumType.STRING)
     private Severity severity;
+    
+    @Enumerated(EnumType.STRING)
+    private Status status;
 	
 	public Long getId() {
 		return id;
@@ -44,12 +47,19 @@ public class Issue implements Serializable {
 		this.description = description;
 	}
 	
-	public Severity getImportance() {
+	public Severity getSeverity() {
 		return severity;
 	}
 	
-	public void setImportance(Severity importance) {
-		this.severity = importance;
+	public void setSeverity(Severity severity) {
+		this.severity = severity;
 	}
 	
+	public Status getStatus() {
+		return this.status;
+	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 }
