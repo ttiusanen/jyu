@@ -1,6 +1,6 @@
 package fi.jyu.issuetracker.dao.models;
 
-public enum Importance {
+public enum Severity {
 	CRITICAL,
 	HIGH,
 	MEDIUM,
