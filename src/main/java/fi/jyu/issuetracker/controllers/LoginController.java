@@ -21,12 +21,13 @@ public class LoginController {
 	@Autowired
 	private UserRepository users;
 	
+	@Autowired
+	private LoginService loginService;
+	
 	@PostMapping("/api/login")
 	@CrossOrigin(origins = "http://localhost:3000")
 	public String login(@RequestBody UserObj userObj) {
-
-		LoginService login = new LoginService();
-		if (login.handleLogin(userObj)) return "OK";
+		if (loginService.handleLogin(userObj)) return "OK";
 		
 		return "Not authorized";
 	}

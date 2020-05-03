@@ -9,7 +9,7 @@ import fi.jyu.issuetracker.dao.models.UserDao;
 
 public interface UserRepository extends JpaRepository<UserDao, Long> {
 	
-	@Query("SELECT u FROM UserDao u WHERE u.username = 1")
+	@Query("SELECT u FROM UserDao u WHERE u.username = ?1")
 	Optional<UserDao> findByUsername(String username);
 		
 	

@@ -17,14 +17,25 @@ public class LoginService {
 	private UserRepository users;
 	
 	public boolean handleLogin(UserObj user) {
+		String login = "";
+		try {
+			login = user.getUsername();
+			System.out.println(login);
+		} catch (Exception e) {
+			System.out.println("Error: username is null");
+		}
+		try {
+			System.out.println("login: " + login);
+			Optional<UserDao> existingUser = users.findByUsername(login);
+			System.out.println(existingUser.get().getUsername());
+			if (!existingUser.isPresent()) return false;
+			
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			if (encoder.matches(user.getPassword(), existingUser.get().getHash())) return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		String login = user.getUsername();
-		System.out.println(login);
-		Optional<UserDao> existingUser = users.findByUsername(login);
-		if (!existingUser.isPresent()) return false;
-		
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		if (encoder.matches(user.getPassword(), existingUser.get().getHash())) return true;
 		
 		return false;
 	}
