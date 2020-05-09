@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fi.jyu.issuetracker.dao.models.UserDao;
-import fi.jyu.issuetracker.dao.models.UserObj;
+import fi.jyu.issuetracker.dao.models.UserWithToken;
+import fi.jyu.issuetracker.dao.models.LoginObj;
 import fi.jyu.issuetracker.dao.repositories.UserRepository;
 import fi.jyu.issuetracker.services.LoginService;
 
@@ -26,16 +27,18 @@ public class LoginController {
 	
 	@PostMapping("/api/login")
 	@CrossOrigin(origins = "http://localhost:3000")
-	public String login(@RequestBody UserObj userObj) {
-		if (loginService.handleLogin(userObj)) return "OK";
-		
-		return "Not authorized";
+	public UserWithToken login(@RequestBody LoginObj userObj) {
+		try {
+			return loginService.handleLogin(userObj);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	
 	@PostMapping("/api/register")
 	@CrossOrigin(origins = "http://localhost:3000")
-	public String register(@RequestBody UserObj userObj) {
+	public String register(@RequestBody LoginObj userObj) {
 		UserDao newUser = new UserDao();
 		newUser.setUsername(userObj.getUsername());
 		// Hash password using Bcrypt (10 rounds)

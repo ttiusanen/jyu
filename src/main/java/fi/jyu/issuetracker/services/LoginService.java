@@ -1,14 +1,19 @@
 package fi.jyu.issuetracker.services;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fi.jyu.issuetracker.dao.models.UserDao;
-import fi.jyu.issuetracker.dao.models.UserObj;
+import fi.jyu.issuetracker.dao.models.UserWithToken;
+import fi.jyu.issuetracker.dao.models.LoginObj;
 import fi.jyu.issuetracker.dao.repositories.UserRepository;
+
+// poistettu pomista security starter, lisäsi kaikkea mielenkiintoista projektiin...
 
 @Service
 public class LoginService {
@@ -16,28 +21,47 @@ public class LoginService {
 	@Autowired
 	private UserRepository users;
 	
-	public boolean handleLogin(UserObj user) {
-		String login = "";
+	@Autowired
+	private JwtTokenUtil tokenService;
+	
+	@Value("${jwt.secret}")
+	private String secret;
+	
+	public UserWithToken handleLogin(LoginObj login) {
+		// pura tarkistus ja token erikseen
 		try {
-			login = user.getUsername();
-			System.out.println(login);
+			System.out.println("Loginissa");
+			UserDao user = getUser(login);
+			if (validatePassword(login, user)) {
+				String token = generateToken(user);
+				UserWithToken loggedUser = new UserWithToken(user.getId(), user.getUsername(), token);
+				return loggedUser;
+			}
+			return null;
 		} catch (Exception e) {
-			System.out.println("Error: username is null");
+			//
 		}
+				
+		return null;
+	}
+	
+	public UserDao getUser(LoginObj userObj) {
 		try {
-			System.out.println("login: " + login);
+			String login = userObj.getUsername();
 			Optional<UserDao> existingUser = users.findByUsername(login);
-			System.out.println(existingUser.get().getUsername());
-			if (!existingUser.isPresent()) return false;
-			
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			if (encoder.matches(user.getPassword(), existingUser.get().getHash())) return true;
-		} catch (Exception e) {
-			e.printStackTrace();
+			return existingUser.get();
+		} catch (NoSuchElementException e) {
+			return null;
 		}
-		
-		
-		return false;
+	}
+	
+	public boolean validatePassword(LoginObj login, UserDao user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.matches(login.getPassword(), user.getHash());
+	}
+	
+	private String generateToken(UserDao user) {
+		return tokenService.generateToken(user);	
 	}
 
 }

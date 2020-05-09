@@ -1,6 +1,11 @@
 package fi.jyu.issuetracker.dao.models;
 
-public class UserObj {
+/**
+ * Class handling user login data
+ * @author ttius
+ *
+ */
+public class LoginObj{
 	
 	private String username;
 	private String password;
@@ -17,8 +22,4 @@ public class UserObj {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
-
 }
