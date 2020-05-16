@@ -29,7 +29,7 @@ public class Issue implements Serializable {
 	private String description;
 	
     @Enumerated(EnumType.STRING)
-    private Severity severity;
+    private Importance importance;
     
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -47,12 +47,12 @@ public class Issue implements Serializable {
 		this.description = description;
 	}
 	
-	public Severity getSeverity() {
-		return severity;
+	public Importance getImportance() {
+		return importance;
 	}
 	
-	public void setSeverity(Severity severity) {
-		this.severity = severity;
+	public void setImportance(Importance importance) {
+		this.importance = importance;
 	}
 	
 	public Status getStatus() {

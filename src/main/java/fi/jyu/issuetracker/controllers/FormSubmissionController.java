@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import fi.jyu.issuetracker.dao.models.Severity;
+import fi.jyu.issuetracker.dao.models.Importance;
 import fi.jyu.issuetracker.dao.models.Status;
 import fi.jyu.issuetracker.dao.models.Issue;
 import fi.jyu.issuetracker.dao.repositories.IssueRepository;
@@ -30,7 +30,7 @@ public class FormSubmissionController {
 	@PostMapping("/api/issues")
 	@CrossOrigin(origins = "http://localhost:3000")
 	public Issue issueSubmit(@RequestBody Issue issue) {
-		issue.setSeverity(Severity.MEDIUM);
+		//issue.setImportance(Importance.MEDIUM);
 		issue.setStatus(Status.OPEN);
 		Issue createdIssue = issueRepository.save(issue);
         return createdIssue;
