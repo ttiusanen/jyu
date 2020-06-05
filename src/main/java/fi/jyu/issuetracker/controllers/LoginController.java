@@ -1,62 +1,52 @@
 package fi.jyu.issuetracker.controllers;
 
 import java.util.List;
-
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import fi.jyu.issuetracker.dao.models.UserDao;
-import fi.jyu.issuetracker.dao.models.UserWithToken;
-import fi.jyu.issuetracker.dao.models.LoginObj;
+import fi.jyu.issuetracker.dao.models.LoginRequest;
 import fi.jyu.issuetracker.dao.repositories.UserRepository;
-import fi.jyu.issuetracker.services.LoginService;
+import fi.jyu.issuetracker.security.JwtTokenProvider;
+import fi.jyu.issuetracker.security.model.JwtAuthenticationResponse;
+import fi.jyu.issuetracker.security.model.User;
 
 @RestController
 public class LoginController {
+
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	
 	@Autowired
-	private UserRepository users;
-	
+	private JwtTokenProvider tokenProvider;
+
 	@Autowired
-	private LoginService loginService;
+	private UserRepository userRepository;
+	
 	
 	@PostMapping("/api/login")
-	@CrossOrigin(origins = "http://localhost:3000")
-	public UserWithToken login(@RequestBody LoginObj userObj) {
-		try {
-			return loginService.handleLogin(userObj);
-		} catch (Exception e) {
-			return null;
-		}
-	}
-	
-	
-	@PostMapping("/api/register")
-	@CrossOrigin(origins = "http://localhost:3000")
-	public String register(@RequestBody LoginObj userObj) {
-		UserDao newUser = new UserDao();
-		newUser.setUsername(userObj.getUsername());
-		// Hash password using Bcrypt (10 rounds)
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		newUser.setHash(encoder.encode(userObj.getPassword()));
-		// Persist new user
-		try {
-			users.save(newUser);
-			return "OK";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "Registration failed";
-	}
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = tokenProvider.generateToken(authentication);
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, "OK", true));
+    }
 	
 	@GetMapping("/api/users")
-	public List<UserDao> users(){
-		return users.findAll();
-	}
+	public List<User> users(){
+		return userRepository.findAll();
+	} 
 }
