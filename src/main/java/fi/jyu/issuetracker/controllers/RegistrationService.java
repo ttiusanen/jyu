@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import fi.jyu.issuetracker.dao.repositories.UserRepository;
 import fi.jyu.issuetracker.security.model.User;
 
+/*
+Controller / Service class for handling user registration.
+*/
 @RestController
-public class RegistrationController {
+public class RegistrationService {
 
     @Autowired
     private UserRepository userRepository;
@@ -22,6 +25,8 @@ public class RegistrationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    // Creates a new user. Validates that username and password are not empty 
+    // and email is well formed.
     @PostMapping("/api/register")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void register(@Valid @RequestBody User user) {

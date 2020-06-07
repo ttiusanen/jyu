@@ -1,5 +1,8 @@
 package fi.jyu.issuetracker.security.model;
 
+/*
+Class representing user role. Needed for Spring Security user handling.
+*/
 public class Role {
 
 	private RoleName roleName;

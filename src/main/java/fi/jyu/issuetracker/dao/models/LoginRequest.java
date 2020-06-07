@@ -2,6 +2,9 @@ package fi.jyu.issuetracker.dao.models;
 
 import javax.validation.constraints.NotBlank;
 
+/*
+Class representing users login request.
+*/ 
 public class LoginRequest {
     @NotBlank
     private String username;

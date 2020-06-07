@@ -1,0 +1,19 @@
+@token = ""
+
+POST http://localhost:8080/api/issues HTTP/1.1
+content-type: application/json
+
+{
+    "description": "testing again",
+    "importance": "MEDIUM"
+}
+
+###
+
+GET http://localhost:8080/api/issues HTTP/1.1
+content-type: application/json
+
+###
+
+DELETE http://localhost:8080/api/issues/37 HTTP/1.1
+content-type: application/json

@@ -2,7 +2,9 @@ package fi.jyu.issuetracker.security.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-
+/** 
+ * Class representing response containing valid Jwt token after user has authenticated.
+*/
 @JsonInclude(JsonInclude.Include.NON_NULL) 	
 public class JwtAuthenticationResponse {
 

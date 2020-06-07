@@ -18,6 +18,9 @@ import fi.jyu.issuetracker.security.JwtTokenProvider;
 import fi.jyu.issuetracker.security.model.JwtAuthenticationResponse;
 import fi.jyu.issuetracker.security.model.User;
 
+/**
+ * Controller class for user login.
+ */
 @RestController
 public class LoginController {
 
@@ -28,10 +31,14 @@ public class LoginController {
 	@Autowired
 	private JwtTokenProvider tokenProvider;
 
-	@Autowired
-	private UserRepository userRepository;
+	/* @Autowired
+	private UserRepository userRepository; */
 	
-	
+	/**
+	 * Authenticates user with username and password.
+	 * @param loginRequest request containing username and password.
+	 * @return Authentication response containing JWT token, if authentication succeeds.
+	 */
 	@PostMapping("/api/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -45,8 +52,8 @@ public class LoginController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, "OK", true));
     }
 	
-	@GetMapping("/api/users")
+	/* @GetMapping("/api/users")
 	public List<User> users(){
 		return userRepository.findAll();
-	} 
+	}  */
 }

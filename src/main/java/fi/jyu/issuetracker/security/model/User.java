@@ -9,8 +9,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+Class reprensenting user in database. Includes JPA entity information. Validates fields
+before persistence.
+*/
 @Entity
 public class User {
 

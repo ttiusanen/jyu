@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Spring Security spesific way of representing user information.
+ */
 public class UserPrincipal implements UserDetails {
 
 	private static final long serialVersionUID = 13332L;
@@ -22,6 +25,11 @@ public class UserPrincipal implements UserDetails {
 		this.authorities = authorities;
 	}
 
+	/**
+	 * Creates a user principal for Spring Security.
+	 * @param user user object with a valid username and password
+	 * @return new user principal.
+	 */
 	public static UserPrincipal create(User user) {
 		return new UserPrincipal(user.getUsername(), user.getPassword(), new ArrayList<GrantedAuthority>());
 	}

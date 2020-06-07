@@ -1,4 +1,4 @@
-@token = Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0dGl1c2FuZW4iLCJpYXQiOjE1OTE0MjY5NzcsImV4cCI6MTU5MjAzMTc3N30.7pUh-ZB6FQzNg0pSJga_2MXZHp4eAY93VNATxjqecTNQwFJFJIQrqZYJbuFVhAt_-FrJZpN3x4fD3K807Q187Q
+@token = ""
 
 POST http://localhost:8080/api/register HTTP/1.1
 content-type: application/json
@@ -7,6 +7,18 @@ content-type: application/json
     "username": "ttiusanen",
     "password": "passu01",
     "email": "ttiusanen@gmail.com"
+}
+
+###
+
+
+POST http://localhost:8080/api/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "test",
+    "password": "testpw",
+    "email": "asd"
 }
 
 ###
