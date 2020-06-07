@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Issue")
@@ -17,6 +19,8 @@ public class Issue implements Serializable {
 	
 	/**
 	 * Auto generated serialVersionUID
+	 * 
+	 * TODO: validation for ENUMs
 	 */
 	private static final long serialVersionUID = -7975098490590780899L;
 
@@ -25,12 +29,14 @@ public class Issue implements Serializable {
     @Column(name = "id")
     private Long id;
 	
+	@NotNull
+    @NotEmpty
 	@Column(name = "description")
 	private String description;
 	
     @Enumerated(EnumType.STRING)
     private Importance importance;
-    
+	
     @Enumerated(EnumType.STRING)
     private Status status;
 	
