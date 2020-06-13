@@ -60,6 +60,24 @@ public class IssueService {
     public Optional<Issue> getIssueByID(@PathVariable Long id) {
         return issueRepository.findById(id);
 	}
+
+	/**
+	 * Updates an issue
+	 * @param issue issue to be updated
+	 */
+	@PostMapping("/api/issues/{id}")
+	@ResponseStatus(code = HttpStatus.OK)
+	public void updateIssue(@RequestBody Issue issue){
+		Long id = issue.getId();
+		Optional<Issue> oldIssue = issueRepository.findById(id);
+		if (oldIssue.isPresent()){
+			Issue updatedIssue = oldIssue.get();
+			updatedIssue.setDescription(issue.getDescription());
+			updatedIssue.setImportance(issue.getImportance());
+			updatedIssue.setStatus(issue.getStatus());
+			issueRepository.save(updatedIssue);
+		}
+	}
 	
 	/**
 	 * Deletes issue by id if id exists

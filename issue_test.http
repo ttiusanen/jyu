@@ -4,7 +4,7 @@ POST http://localhost:8080/api/issues HTTP/1.1
 content-type: application/json
 
 {
-    "description": "testing again",
+    "description": "testing",
     "importance": "MEDIUM"
 }
 
@@ -17,3 +17,16 @@ content-type: application/json
 
 DELETE http://localhost:8080/api/issues/36 HTTP/1.1
 content-type: application/json
+
+###
+
+
+POST http://localhost:8080/api/issues/1 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "description": "testing update",
+    "importance": "HIGH",
+    "status": "CLOSED"
+}
