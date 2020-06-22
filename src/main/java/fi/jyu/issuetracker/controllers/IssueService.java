@@ -52,17 +52,18 @@ public class IssueService {
 	}
 	
 	/**
-	 * Returns issue by id
+	 * Returns issue by id if id exists
 	 * @param id issue id
 	 * @return issue.
 	 */
 	@GetMapping("/api/issues/{id}")
-    public Optional<Issue> getIssueByID(@PathVariable Long id) {
-        return issueRepository.findById(id);
+    public Issue getIssueByID(@PathVariable Long id) {		
+		Optional<Issue> issue = issueRepository.findById(id);
+		return issue.isPresent() ? issue.get() : null;
 	}
 
 	/**
-	 * Updates an issue
+	 * Updates an issue if issue with given id exists
 	 * @param issue issue to be updated
 	 */
 	@PostMapping("/api/issues/{id}")
