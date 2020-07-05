@@ -51,13 +51,15 @@ class IssuetrackerApplicationTests {
 	@BeforeAll
 	public void initialize(){
 		Issue issue = new Issue();
-		issue.setDescription("Test issue");
+		issue.setSummary("Test issue");
+		issue.setDetails("Issue about testing issues");
 		issue.setImportance(Importance.MEDIUM);
 		issue.setStatus(Status.OPEN);
 		issueRepository.save(issue);
 
 		Issue issue2 = new Issue();
-		issue2.setDescription("This is deleted");
+		issue2.setSummary("Deleted issue");
+		issue2.setDetails("This is deleted");
 		issue2.setImportance(Importance.MEDIUM);
 		issue2.setStatus(Status.CLOSED);
 		issueRepository.save(issue2);
@@ -134,7 +136,7 @@ class IssuetrackerApplicationTests {
 		String content = result.getResponse().getContentAsString();
 		Issue issue = objectMapper.readValue(content, Issue.class);
 		assertEquals(1L, issue.getId(), "ID is 1");
-		assertEquals("Test issue", issue.getDescription());
+		assertEquals("Test issue", issue.getSummary());
 	}
 
 	@Test
@@ -142,7 +144,8 @@ class IssuetrackerApplicationTests {
 	public void issueIsUpdatedCorrectly() throws JsonProcessingException, Exception {
 		Issue issue = new Issue();
 		issue.setId(1L);
-		issue.setDescription("Updated issue");
+		issue.setSummary("Updated issue");
+		issue.setDetails("Updated details");
 		issue.setImportance(Importance.MEDIUM);
 		issue.setStatus(Status.CLOSED);
 
@@ -159,7 +162,7 @@ class IssuetrackerApplicationTests {
 		Issue updatedIssue = objectMapper.readValue(content, Issue.class);
 
 		assertEquals(1L, updatedIssue.getId(), "ID is 1");
-		assertEquals("Updated issue", updatedIssue.getDescription());
+		assertEquals("Updated issue", updatedIssue.getSummary());
 	}
 
  	@Test

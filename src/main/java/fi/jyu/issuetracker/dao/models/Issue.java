@@ -27,12 +27,17 @@ public class Issue implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+	private Long id;
 	
 	@NotNull
     @NotEmpty
-	@Column(name = "description")
-	private String description;
+	@Column(name = "summary")
+	private String summary;
+	
+	@NotNull
+    @NotEmpty
+	@Column(name = "details")
+	private String details;
 	
     @Enumerated(EnumType.STRING)
     private Importance importance;
@@ -46,11 +51,19 @@ public class Issue implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDescription() {
-		return description;
+	public String getSummary(){
+		return this.summary;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public void setSummary(String summary){
+		this.summary = summary;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
 	}
 	
 	public Importance getImportance() {

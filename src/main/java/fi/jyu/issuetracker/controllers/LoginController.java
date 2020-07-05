@@ -48,8 +48,10 @@ public class LoginController {
 
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, "OK", true));
+		String jwt = tokenProvider.generateToken(authentication);
+		// Send username to frontend
+		//String username = tokenProvider.getUserNameFromJWT(jwt);
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, "User logged in", true));
     }
 	
 	/* @GetMapping("/api/users")
