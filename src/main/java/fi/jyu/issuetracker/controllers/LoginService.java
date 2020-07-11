@@ -22,7 +22,7 @@ import fi.jyu.issuetracker.security.model.User;
  * Controller class for user login.
  */
 @RestController
-public class LoginController {
+public class LoginService {
 
 
 	@Autowired
@@ -49,13 +49,8 @@ public class LoginController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = tokenProvider.generateToken(authentication);
-		// Send username to frontend
-		//String username = tokenProvider.getUserNameFromJWT(jwt);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, "User logged in", true));
     }
 	
-	/* @GetMapping("/api/users")
-	public List<User> users(){
-		return userRepository.findAll();
-	}  */
+	
 }
