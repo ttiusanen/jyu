@@ -52,14 +52,14 @@ class IssuetrackerApplicationTests {
 	public void initialize(){
 		Issue issue = new Issue();
 		issue.setSummary("Test issue");
-		issue.setDetails("Issue about testing issues");
+		issue.setDescription("Issue about testing issues");
 		issue.setImportance(Importance.MEDIUM);
 		issue.setStatus(Status.OPEN);
 		issueRepository.save(issue);
 
 		Issue issue2 = new Issue();
 		issue2.setSummary("Deleted issue");
-		issue2.setDetails("This is deleted");
+		issue2.setDescription("This is deleted");
 		issue2.setImportance(Importance.MEDIUM);
 		issue2.setStatus(Status.CLOSED);
 		issueRepository.save(issue2);
@@ -145,7 +145,7 @@ class IssuetrackerApplicationTests {
 		Issue issue = new Issue();
 		issue.setId(1L);
 		issue.setSummary("Updated issue");
-		issue.setDetails("Updated details");
+		issue.setDescription("Updated details");
 		issue.setImportance(Importance.MEDIUM);
 		issue.setStatus(Status.CLOSED);
 

@@ -74,7 +74,7 @@ public class IssueService {
 		if (oldIssue.isPresent()){
 			Issue updatedIssue = oldIssue.get();
 			updatedIssue.setSummary(issue.getSummary());
-			updatedIssue.setDetails(issue.getDetails());
+			updatedIssue.setDescription(issue.getDescription());
 			updatedIssue.setImportance(issue.getImportance());
 			updatedIssue.setStatus(issue.getStatus());
 			issueRepository.save(updatedIssue);
