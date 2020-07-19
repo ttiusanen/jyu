@@ -18,7 +18,7 @@ before persistence.
 public class User {
 
 	@Id
-	@Column
+	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 

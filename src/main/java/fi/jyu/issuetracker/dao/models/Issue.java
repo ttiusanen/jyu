@@ -1,17 +1,23 @@
 package fi.jyu.issuetracker.dao.models;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import fi.jyu.issuetracker.security.model.User;
 
 @Entity
 @Table(name = "Issue")
@@ -41,7 +47,19 @@ public class Issue implements Serializable {
     private Importance importance;
 	
     @Enumerated(EnumType.STRING)
-    private Status status;
+	private Status status;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public Optional<User> getUser(){
+		return Optional.ofNullable(user);
+	}
+
+	public void setUser(User user){
+		this.user = user;
+	}
 	
 	public Long getId() {
 		return id;

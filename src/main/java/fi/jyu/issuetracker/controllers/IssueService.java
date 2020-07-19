@@ -39,7 +39,6 @@ public class IssueService {
 	@PostMapping("/api/issues")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Issue issueSubmit(@Valid @RequestBody Issue issue) {
-		//issue.setImportance(Importance.MEDIUM);
 		issue.setStatus(Status.OPEN);
 		Issue createdIssue = issueRepository.save(issue);
         return createdIssue;
