@@ -20,10 +20,10 @@ import fi.jyu.issuetracker.dao.models.Issue;
 import fi.jyu.issuetracker.dao.repositories.IssueRepository;
 
 
-// TODO: add userAssignedTo to issue. Add also issue creation timestamp. Let user decide issue importance when creating new issue.
+// TODO: add issue creation timestamp. 
 
 /**
- * Controller class for handling issue submits and issue database operations.
+ * Service for handling issue submits and issue database operations.
  */
 @RestController
 public class IssueService {

@@ -22,6 +22,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+/**
+ * Spring Security configuration. Introduces needed beans. Enables password encryption, CORS configuration and sets API endpoints
+ * which are secured and which are not.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
@@ -34,9 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-	// erroria ilman nimen muutosta:
-	// The bean 'jwtAuthenticationFilter', 
-	// defined in class path resource [fi/jyu/issuetracker/security/SecurityConfig.class], could not be registered. A bean with that name has already been defined in file 
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilterBean() {
 		return new JwtAuthenticationFilter();
@@ -53,6 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
+	/**
+	 * Enable CORS
+	 * @return CORS configuration
+	 */
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		
@@ -66,6 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return source;
 	}
 
+	/**
+	 * Use Bcrypt to encrypt passwords by default.
+	 * @return
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	  return new BCryptPasswordEncoder();
@@ -80,6 +89,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	  return provider;
 	}
 
+	/**
+	 * Allow entry to /api/login and /api/register entrypoints without authentication. Authenticate
+	 * all other entrypoints.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors()
@@ -88,7 +101,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and().authorizeRequests()
 				.antMatchers("/api/login").permitAll()
 				.antMatchers("/api/register").permitAll()
-				//.antMatchers("/api/issues/**").permitAll()
 				.anyRequest().authenticated();
 		
 		http.addFilterBefore(jwtAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);

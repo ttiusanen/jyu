@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class JwtAuthenticationFilter filters and validates JWT tokens from requests.
+ */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

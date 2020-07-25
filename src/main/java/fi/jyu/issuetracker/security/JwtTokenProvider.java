@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * JwtTokenProvider provides functionalities for creating and validating JWT tokens.
+ */
 @Component
 public class JwtTokenProvider {
 
@@ -20,6 +23,11 @@ public class JwtTokenProvider {
 	@Value("${credentials.jwtExpirationInMs}")
 	private int jwtExpirationInMs;
 
+	/**
+	 * Generates JWT token from Spring Security Authentication object.
+	 * @param authentication user authentication details.
+	 * @return JWT token
+	 */
 	public String generateToken(Authentication authentication) {
 		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 		Date now = new Date();
@@ -28,11 +36,21 @@ public class JwtTokenProvider {
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
 	}
 
+	/**
+	 * Returns username from JWT token.
+	 * @param token JWT token.
+	 * @return username
+	 */
 	public String getUserNameFromJWT(String token) {
 		Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
 		return claims.getSubject();
 	}
 
+	/**
+	 * Validates JWT token against authorization token.
+	 * @param authToken
+	 * @return true if token is valid. False otherwise.
+	 */
 	public boolean validateToken(String authToken) {
 		try {
 			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);

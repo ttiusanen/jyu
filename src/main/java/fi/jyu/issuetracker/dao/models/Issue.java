@@ -19,6 +19,10 @@ import javax.validation.constraints.NotNull;
 
 import fi.jyu.issuetracker.security.model.User;
 
+/**
+ * Class Issue represents user created issues. Includes JPA entity information.
+ * Validates fields before persisting.
+ */
 @Entity
 @Table(name = "Issue")
 public class Issue implements Serializable {
@@ -53,9 +57,14 @@ public class Issue implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	// Returns user if user has been initialized. Otherwise returns null.
 	public Optional<User> getUser(){
 		return Optional.ofNullable(user);
 	}
+
+	/*
+	  Generic setters and getters
+	*/
 
 	public void setUser(User user){
 		this.user = user;

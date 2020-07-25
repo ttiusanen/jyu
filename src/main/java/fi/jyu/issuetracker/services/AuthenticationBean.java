@@ -12,6 +12,9 @@ import fi.jyu.issuetracker.security.JwtTokenProvider;
 import fi.jyu.issuetracker.security.model.JwtAuthenticationResponse;
 import fi.jyu.issuetracker.security.model.User;
 
+/**
+ * Bean handles user authentication with username and password.
+ */
 @Service
 public class AuthenticationBean {
 
@@ -30,7 +33,7 @@ public class AuthenticationBean {
 	}
 
 	/**
-	 * Authenticate user and return jwt token
+	 * Authenticates user and returns jwt token
 	 * 
 	 * @param user
 	 * @return

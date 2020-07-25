@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import fi.jyu.issuetracker.dao.repositories.UserRepository;
 import fi.jyu.issuetracker.security.model.User;
 
+/**
+ * Spring Security UserDetailsService implementation. 
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

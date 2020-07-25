@@ -10,10 +10,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 
-/*
-Class reprensenting user in database. Includes JPA entity information. Validates fields
-before persistence.
-*/
+
+/**
+ * Class representing applications user in database. Includes JPA entity information. Validates fields
+ * before persistence.
+ */
 @Entity
 public class User {
 

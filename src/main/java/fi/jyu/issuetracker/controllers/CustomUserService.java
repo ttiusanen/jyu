@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import fi.jyu.issuetracker.dao.repositories.UserRepository;
 import fi.jyu.issuetracker.security.model.User;
 
+/**
+ * Service for getting user data.
+ */
 @RestController
 public class CustomUserService {
 
