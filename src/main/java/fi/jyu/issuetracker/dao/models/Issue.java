@@ -62,13 +62,14 @@ public class Issue implements Serializable {
 		return Optional.ofNullable(user);
 	}
 
+	// Sets user if user is provided. Otherwise sets user to null.
+	public void setUser(Optional<User> user){
+		this.user = user.isPresent() ? user.get() : null;
+	}
+
 	/*
 	  Generic setters and getters
 	*/
-
-	public void setUser(User user){
-		this.user = user;
-	}
 	
 	public Long getId() {
 		return id;

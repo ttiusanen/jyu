@@ -79,6 +79,7 @@ public class IssueService {
 			updatedIssue.setDescription(issue.getDescription());
 			updatedIssue.setImportance(issue.getImportance());
 			updatedIssue.setStatus(issue.getStatus());
+			updatedIssue.setUser(issue.getUser());
 			issueRepository.save(updatedIssue);
 		}
 	}
