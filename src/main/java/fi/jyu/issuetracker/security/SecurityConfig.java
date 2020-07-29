@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/**
 	 * Use Bcrypt to encrypt passwords by default.
-	 * @return
+	 * @return encoder
 	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
