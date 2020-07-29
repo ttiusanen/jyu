@@ -4,6 +4,12 @@ Repositorio käsittää Jyväskylän yliopiston Ohjelmointityö-kurssille tehdyn
 Toteutuksessa on hyödynnetty Java-ohjelmointikieltä, Spring Boot -sovelluskehystä ja sen Security-arkkitehtuuria. 
 Toteutus sisältää JUNIT5-testit.
 
+## Suoritusympäristön vaatimukset ##
+
+Sovelluksen ajaminen lokaalisti vaatii
+* Maven (versio 3.6.x)
+* JDK 8 tai uudempi.
+
 ## Sovelluksen ajaminen lokaalisti ##
 
 1) Kloonaa tämä repositorio itsellesi ja siirry repositorion juureen.
