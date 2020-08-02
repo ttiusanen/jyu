@@ -17,7 +17,7 @@ Sovelluksen ajaminen lokaalisti vaatii
 3) Aja repositorion juuressa komennot `mvn clean` ja `mvn install`.
 4) Sovellus käynnistetään komennolla `mvn spring-boot:run`.
 
-Käynnistyksen jälkeen sovellusta voi testata esim. Postmanilla tai VS Coden Rest Client -lisäominaisuudella.
+Käynnistyksen jälkeen sovellusta voi testata esim. Postmanilla tai VSCoden RestClient -lisäominaisuudella.
 
 ## Sovelluksen testien ajaminen ##
 
