@@ -34,5 +34,5 @@ build/
 .settings
 
 ### DB files ###
-issuesdb*
+/data/db/issuesdb*
 

@@ -2,7 +2,7 @@
 
 Repositorio käsittää Jyväskylän yliopiston Ohjelmointityö-kurssille tehdyn Web-palvelintoteutuksen.
 Toteutuksessa on hyödynnetty Java-ohjelmointikieltä, Spring Boot -sovelluskehystä ja sen Security-arkkitehtuuria. 
-Toteutus sisältää JUNIT5-testit.
+Toteutus sisältää testit julkaistuille rajapinnoille.
 
 ## Suoritusympäristön vaatimukset ##
 
@@ -23,6 +23,10 @@ Käynnistyksen jälkeen sovellusta voi testata esim. Postmanilla tai VS Coden Re
 
 Sovelluksen testit ajetaan repositorion juuressa komennolla `mvn test`. Komento ajaa kaikki sovellukselle määritellyt testit.
 
+## Rajapintojen testaaminen VSCode RestClientin avulla
+
+Kansiossa `restClient` on joitakin testikutsuja, joilla sovelluksen julkaisemia rajapintoja voi testata. Huomioitava on se, että Spring Security suojaa kaikki rajapinnat `/api/login` ja `/api/register` rajapintoja lukuunottamatta, joten testatessa suojattuja rajapintoja kutsun mukana tulee toimittaa Authorization header mallikutsun mukaisesti.
+
 ## Sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ##
 
-Backend-sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ei tarvitse muita toimia, kuin backend-sovelluksen käynnistämisen.
+Backend-sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ei vaadi muuta, kuin backend-sovelluksen käynnistämisen. Backend kuuntelee porttia 8080, frontendin toteuttava React-sovellus toimii portissa 3000 ja React-sovellus reitittää kutsut backendille valmiiden konfiguraatioiden mukaisesti.
