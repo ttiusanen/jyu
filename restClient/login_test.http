@@ -1,12 +1,10 @@
-@token = ""
-
 POST http://localhost:8080/api/register HTTP/1.1
 content-type: application/json
 
 {
     "username": "ttiusanen",
-    "password": "passu01",
-    "email": "ttiusanen@gmail.com"
+    "password": "",
+    "email": ""
 }
 
 ###
@@ -16,9 +14,9 @@ POST http://localhost:8080/api/register HTTP/1.1
 content-type: application/json
 
 {
-    "username": "test",
+    "username": "testuser",
     "password": "testpw",
-    "email": "asd"
+    "email": "testuser@domain.com"
 }
 
 ###

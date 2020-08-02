@@ -1,28 +1,30 @@
 @token = ""
 
-POST http://localhost:8080/api/issues HTTP/1.1
-content-type: application/json
+# Testing /api/issues/* endpoints requires a valid token. Token is granted after
+# successful login and is passed to request in Authorization header. Example below.
 
-{
-    "description": "testing",
-    "importance": "MEDIUM"
-}
+GET http://localhost:8080/api/issues HTTP/1.1
+content-type: application/json
+Authorization: {{token}}
 
 ###
 
 GET http://localhost:8080/api/issues HTTP/1.1
 content-type: application/json
+Authorization: {{token}}
 
 ###
 
 DELETE http://localhost:8080/api/issues/36 HTTP/1.1
 content-type: application/json
+Authorization: {{token}}
 
 ###
 
 
 POST http://localhost:8080/api/issues/1 HTTP/1.1
 content-type: application/json
+Authorization: {{token}}
 
 {
     "id": 1,
