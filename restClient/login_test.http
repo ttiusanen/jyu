@@ -33,3 +33,17 @@ content-type: application/json
 
 GET http://localhost:8080/api/users HTTP/1.1
 content-type: application/json
+
+
+###
+# Test with container IP
+# 172.17.0.2 is the Docker container ip 
+# 8080 is the exposed port from the container
+POST http://172.17.0.2:8080/api/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "test",
+    "password": "testpw",
+    "email": "testuser@domain.com"
+}
