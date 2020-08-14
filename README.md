@@ -10,7 +10,7 @@ Sovelluksen ajaminen lokaalisti vaatii
 * Maven (versio 3.6.x)
 * JDK 8 tai uudempi.
 
-## Sovelluksen ajaminen lokaalisti ##
+## Sovelluksen ajaminen testausympäristössä ##
 
 1) Kloonaa tämä repositorio itsellesi ja siirry repositorion juureen.
 2) Lataa tarvittaessa itsellesi Maven (versio 3.6.x)
@@ -31,7 +31,7 @@ Kansiossa `restClient` on joitakin testikutsuja, joilla sovelluksen julkaisemia 
 
 Backend-sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ei vaadi muuta, kuin backend-sovelluksen käynnistämisen. Backend kuuntelee porttia 8080, frontendin toteuttava React-sovellus toimii portissa 3000 ja React-sovellus reitittää kutsut backendille valmiiden konfiguraatioiden mukaisesti.
 
-## Ohjeita sovelluksen testaamiseksi
+## Sovelluksen tuotantoversion ajaminen
 
 1) Luo sovelluksesta ajettava jar-tiedosto komennolla `mvn -B package` projektin juuressa.
 2) Käynnistä sovellus komennolla `java -jar ./target/issuetracker-1.0-SNAPSHOT.jar`
@@ -46,6 +46,6 @@ curl -H "Content-Type: application/json" \
   
 Käyttäjän luomiseksi voi käyttää myös restClient-kansiossa olevia kutsuja.
 
-4) Käytä edellisessä komennossa olevaa käyttäjätunnusta ja salasanaa kirjautuaksesi sovellukseen.
+4) Käytä edellisessä komennossa olevaa käyttäjätunnusta ja salasanaa kirjautuaksesi käyttöliittymään.
 
 
