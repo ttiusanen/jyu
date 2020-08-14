@@ -30,3 +30,20 @@ Kansiossa `restClient` on joitakin testikutsuja, joilla sovelluksen julkaisemia 
 ## Sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ##
 
 Backend-sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ei vaadi muuta, kuin backend-sovelluksen käynnistämisen. Backend kuuntelee porttia 8080, frontendin toteuttava React-sovellus toimii portissa 3000 ja React-sovellus reitittää kutsut backendille valmiiden konfiguraatioiden mukaisesti.
+
+## Ohjeita sovelluksen testaamiseksi
+
+1) Luo sovelluksesta ajettava jar-tiedosto komennolla `mvn -B package` projektin juuressa.
+2) Käynnistä sovellus komennolla `java -jar ./target/issuetracker-1.0-SNAPSHOT.jar`
+3) Luo itsellesi testikäyttäjä seuraavalla komennolla
+
+```curl -H "Content-Type: application/json" \
+  -X POST \
+  --data '{"username":"testuser","password":"testpasswd", "email":"testuser@domain.com"}' \
+  http://localhost:8080/api/register```
+
+Käyttäjän luomiseksi voi käyttää myös restClient-kansiossa olevia kutsuja.
+
+4) Käytä edellisessä komennossa olevaa käyttäjätunnusta ja salasanaa kirjautuaksesi sovellukseen.
+
+
