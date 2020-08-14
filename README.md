@@ -41,6 +41,7 @@ Backend-sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ei vaadi muuta, k
   -X POST \
   --data '{"username":"testuser","password":"testpasswd", "email":"testuser@domain.com"}' \
   http://localhost:8080/api/register```
+  
 
 Käyttäjän luomiseksi voi käyttää myös restClient-kansiossa olevia kutsuja.
 
