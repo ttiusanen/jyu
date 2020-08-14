@@ -33,6 +33,8 @@ Backend-sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ei vaadi muuta, k
 
 ## Sovelluksen tuotantoversion ajaminen
 
+**Lokaalissa ympäristössä**
+
 1) Luo sovelluksesta ajettava jar-tiedosto komennolla `mvn -B package` projektin juuressa.
 2) Käynnistä sovellus komennolla `java -jar ./target/issuetracker-1.0-SNAPSHOT.jar`
 3) Luo itsellesi testikäyttäjä seuraavalla komennolla
@@ -48,4 +50,13 @@ Käyttäjän luomiseksi voi käyttää myös restClient-kansiossa olevia kutsuja
 
 4) Käytä edellisessä komennossa olevaa käyttäjätunnusta ja salasanaa kirjautuaksesi käyttöliittymään.
 
+**Docker-kontissa**
 
+Aja projektin juuressa komento `docker build -t ttiusanen/issueapp-backend:latest .`
+
+Luotu kontti voidaan käynnistää kommennolla 
+
+`docker run -it --rm ttiusanen/issueapp-backend:latest` (interaktiivinen moodi) tai
+`docker run -d ttiusanen/issueapp-backend:latest` (kontti suoritetaan taustalla)
+
+Ensimmäinen komento tuhoaa luodun kontin suorituksen päätteeksi. Jälkimmäinen käynnistyskomento jättää kontin käyntiin taustalle.
