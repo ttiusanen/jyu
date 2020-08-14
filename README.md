@@ -37,10 +37,10 @@ Backend-sovelluksen ajaminen yhtäaikaisesti frontendin kanssa ei vaadi muuta, k
 2) Käynnistä sovellus komennolla `java -jar ./target/issuetracker-1.0-SNAPSHOT.jar`
 3) Luo itsellesi testikäyttäjä seuraavalla komennolla
 
-`curl -H "Content-Type: application/json" \
+```curl -H "Content-Type: application/json" \
   -X POST \
   --data '{"username":"testuser","password":"testpasswd", "email":"testuser@domain.com"}' \
-  http://localhost:8080/api/register`
+  http://localhost:8080/api/register```
   
 
 Käyttäjän luomiseksi voi käyttää myös restClient-kansiossa olevia kutsuja.
