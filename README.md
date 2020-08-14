@@ -44,7 +44,6 @@ curl -H "Content-Type: application/json" \
   http://localhost:8080/api/register
 ```
   
-
 Käyttäjän luomiseksi voi käyttää myös restClient-kansiossa olevia kutsuja.
 
 4) Käytä edellisessä komennossa olevaa käyttäjätunnusta ja salasanaa kirjautuaksesi sovellukseen.
