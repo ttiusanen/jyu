@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
@@ -19,14 +18,10 @@ import fi.jyu.issuetracker.dao.models.Importance;
 import fi.jyu.issuetracker.dao.models.Issue;
 import fi.jyu.issuetracker.dao.models.Status;
 import fi.jyu.issuetracker.dao.repositories.IssueRepository;
-import fi.jyu.issuetracker.dao.repositories.UserRepository;
-import fi.jyu.issuetracker.security.model.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.Optional;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
